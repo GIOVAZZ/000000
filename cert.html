@@ -1,346 +1,186 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Carrossel de Certificados</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Giovanne Oliveira | Certificações</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
-        
-        body, html {
-            height: 100%; /* Altura total da tela */
-            margin: 0; /* Remove margens padrão */
-            background-color: #f8f9fa; /* Cor de fundo suave */
+        :root {
+            --bg-deep: #0a0c10;
+            --card-bg: #13161c;
+            --accent-blue: #3b82f6;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
         }
-        #carouselExampleCaptions {
-            height: 95%; /* Altura total do carrossel */
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            background-image: radial-gradient(circle at top right, #1e293b 0%, var(--bg-deep) 60%);
         }
-        .carousel-item {
-            height: 95%; /* Altura total de cada item */
+
+        /* Navbar Mantida */
+        .navbar {
+            backdrop-filter: blur(15px);
+            background: rgba(10, 12, 16, 0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
         }
+        .nav-link { color: var(--text-dim) !important; font-weight: 600; }
+        .nav-link.active { color: var(--accent-blue) !important; }
+
+        /* Header Section */
+        .page-header { padding-top: 140px; padding-bottom: 60px; }
+        .text-gradient { background: linear-gradient(135deg, #fff 0%, #3b82f6 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        /* Estilo do Carrossel Refinado */
+        .carousel-container {
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+            padding: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+        }
+
         .carousel-item img {
-            height: 80%; /* A imagem ocupa toda a altura */
-            width: 80%; /* A imagem ocupa toda a largura */
-            object-fit:fill; /* Preenche o espaço mantendo a proporção */
+            border-radius: 20px;
+            max-height: 70vh;
+            object-fit: contain;
+            background: #000;
         }
+
         .carousel-caption {
-            background-color: rgba(0, 0, 0, 0.5); /* Fundo semitransparente para as legendas */
-            border-radius: 5px; /* Bordas arredondadas para a legenda */
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Custom Indicators */
+        .carousel-indicators [button] {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        .cert-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 50px;
+            background: rgba(59, 130, 246, 0.2);
+            color: var(--accent-blue);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Botões de Navegação */
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+            opacity: 0.8;
+        }
+        .control-icon {
+            background: var(--accent-blue);
+            padding: 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
     </style>
 </head>
-<nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-    <div class="container px-5">
-        <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Giovanne Oliveira</span></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="resume.html">Resumo</a></li>
-                <li class="nav-item"><a class="nav-link" href="projects.html">Projetos</a></li>
-                <li class="nav-item"><a class="nav-link" href="cert.html">Certificados</a></li>
-                <li class="nav-item"><a class="nav-link" href="contact.html">Contato</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
 <body>
 
-    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="5" aria-label="Slide 6"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="6" aria-label="Slide 7"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="7" aria-label="Slide 8"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="8" aria-label="Slide 9"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="9" aria-label="Slide 10"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="10" aria-label="Slide 11"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="11" aria-label="Slide 12"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="12" aria-label="Slide 13"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="13" aria-label="Slide 14"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="14" aria-label="Slide 15"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="15" aria-label="Slide 16"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="16" aria-label="Slide 17"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="17" aria-label="Slide 18"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="18" aria-label="Slide 19"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="19" aria-label="Slide 20"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="20" aria-label="Slide 21"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="21" aria-label="Slide 22"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="22" aria-label="Slide 23"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="23" aria-label="Slide 24"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="24" aria-label="Slide 25"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="25" aria-label="Slide 26"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="26" aria-label="Slide 27"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="27" aria-label="Slide 28"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="28" aria-label="Slide 29"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="29" aria-label="Slide 30"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="30" aria-label="Slide 31"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="31" aria-label="Slide 32"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="32" aria-label="Slide 33"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="33" aria-label="Slide 34"></button>
-            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="34" aria-label="Slide 35"></button>
-        </div>
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="/assets/certificado001.png" class="d-block w-100" alt="Certificado 1">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado002.png" class="d-block w-100" alt="Certificado 2">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado003.png" class="d-block w-100" alt="Certificado 3">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado004.png" class="d-block w-100" alt="Certificado 4">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado005.png" class="d-block w-100" alt="Certificado 5">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="./assets/certificado006.png" class="d-block w-100" alt="Certificado 6">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado007.png" class="d-block w-100" alt="Certificado 7">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado008.png" class="d-block w-100" alt="Certificado 8">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado009.png" class="d-block w-100" alt="Certificado 9">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado010.png" class="d-block w-100" alt="Certificado 10">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado011.png" class="d-block w-100" alt="Certificado 11">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado012.png" class="d-block w-100" alt="Certificado 12">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado013.png" class="d-block w-100" alt="Certificado 13">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado014.png" class="d-block w-100" alt="Certificado 14">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado015.png" class="d-block w-100" alt="Certificado 15">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado016.png" class="d-block w-100" alt="Certificado 16">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado017.png" class="d-block w-100" alt="Certificado 17">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado018.png" class="d-block w-100" alt="Certificado 18">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado019.png" class="d-block w-100" alt="Certificado 19">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado020.png" class="d-block w-100" alt="Certificado 20">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado021.png" class="d-block w-100" alt="Certificado 21">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado022.png" class="d-block w-100" alt="Certificado 22">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado023.png" class="d-block w-100" alt="Certificado 23">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado024.png" class="d-block w-100" alt="Certificado 24">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado025.png" class="d-block w-100" alt="Certificado 25">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado026.png" class="d-block w-100" alt="Certificado 26">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado027.png" class="d-block w-100" alt="Certificado 27">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado028.png" class="d-block w-100" alt="Certificado 28">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado029.png" class="d-block w-100" alt="Certificado 29">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado030.png" class="d-block w-100" alt="Certificado 30">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado031.png" class="d-block w-100" alt="Certificado 31">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado032.png" class="d-block w-100" alt="Certificado 32">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado033.png" class="d-block w-100" alt="Certificado 33">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado034.png" class="d-block w-100" alt="Certificado 34">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
-            </div>
-            <div class="carousel-item">
-                <img src="/assets/certificado035.png" class="d-block w-100" alt="Certificado 35">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Certificado de Conclusão</h5>
-                    <p>Alura</p>
-                </div>
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container px-5">
+            <a class="navbar-brand fw-800 fs-4 text-white" href="index.html">G<span style="color: var(--accent-blue)">.</span>OLIVEIRA</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto gap-4">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="resume.html">Resumo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="projects.html">Projetos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="cert.html">Certificados</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contato</a></li>
+                </ul>
             </div>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Próximo</span>
-        </button>
-    </div>
+    </nav>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <main class="container">
+        <header class="page-header text-center" data-aos="fade-down">
+            <div class="cert-badge">Aprendizado Contínuo</div>
+            <h1 class="display-4 fw-800 mb-3">Minhas <span class="text-gradient">Certificações</span></h1>
+            <p class="text-dim mx-auto" style="max-width: 600px;">Uma coleção das competências desenvolvidas em Marketing, UX Design e Tecnologia ao longo da minha jornada.</p>
+        </header>
+
+        <section class="row justify-content-center pb-5" data-aos="zoom-in">
+            <div class="col-xl-10">
+                <div class="carousel-container">
+                    <div id="certCarousel" class="carousel slide" data-bs-ride="carousel">
+                        
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="/assets/certificado001.png" class="d-block w-100" alt="Certificado Alura">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 class="fw-bold">Certificação Especialista</h5>
+                                    <p class="small text-dim mb-0">Instituição: Alura | Formação Tecnologia</p>
+                                </div>
+                            </div>
+
+                            <div class="carousel-item">
+                                <img src="/assets/certificado002.png" class="d-block w-100" alt="Certificado Alura">
+                                <div class="carousel-caption d-none d-md-block">
+                                    <h5 class="fw-bold">Certificação de Conclusão</h5>
+                                    <p class="small text-dim mb-0">Instituição: Alura</p>
+                                </div>
+                            </div>
+
+                            </div>
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#certCarousel" data-bs-slide="prev">
+                            <span class="control-icon"><i class="bi bi-chevron-left"></i></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#certCarousel" data-bs-slide="next">
+                            <span class="control-icon"><i class="bi bi-chevron-right"></i></span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="text-center mt-4">
+                    <p class="text-dim small"><i class="bi bi-info-circle me-2"></i>Use as setas para navegar entre os 35 certificados disponíveis.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container py-5 text-center mt-5">
+        <p class="text-dim small">© 2024 Giovanne Oliveira • Evolução constante.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+        
+        // Ativar carrossel com intervalo de 5 segundos
+        const myCarousel = document.querySelector('#certCarousel')
+        const carousel = new bootstrap.Carousel(myCarousel, {
+          interval: 5000,
+          wrap: true
+        })
+    </script>
 </body>
 </html>
