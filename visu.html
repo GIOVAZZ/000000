@@ -1,99 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizador de Imagens</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Giovanne Oliveira | Projetos Visuais</title>
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
+        :root {
+            --bg-deep: #0a0c10;
+            --card-bg: #13161c;
+            --accent-blue: #3b82f6;
+            --text-main: #f8fafc;
+            --text-dim: #94a3b8;
+        }
+
         body {
-            background-color: #f8f9fa;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            background-image: radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+            margin: 0;
         }
-        .thumbnail {
+
+        /* Navbar Original Mantida */
+        .navbar {
+            backdrop-filter: blur(15px);
+            background: rgba(10, 12, 16, 0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .navbar-brand { font-weight: 800; letter-spacing: -1px; }
+        .nav-link { color: var(--text-dim) !important; font-weight: 600; font-size: 0.9rem; transition: 0.3s; }
+        .nav-link:hover, .nav-link.active { color: var(--accent-blue) !important; }
+
+        /* Cabeçalho */
+        .page-header { padding-top: 140px; padding-bottom: 40px; }
+        .text-gradient { 
+            background: linear-gradient(135deg, #fff 0%, #3b82f6 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
+
+        /* Galeria de Projetos */
+        .gallery-item {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
-            transition: transform 0.2s;
+            margin-bottom: 30px;
+            height: 300px;
         }
-        .thumbnail:hover {
-            transform: scale(1.05);
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
-        #modalImage {
+
+        .gallery-item img {
             width: 100%;
-            height: auto;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
         }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* Overlay */
+        .gallery-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(to top, rgba(10, 12, 16, 0.9), transparent);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        .view-icon {
+            background: var(--accent-blue);
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        /* Modal */
+        .modal-content {
+            background: rgba(19, 22, 28, 0.95);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 30px;
+        }
+        .modal-header { border-bottom: 1px solid rgba(255,255,255,0.05); color: white; }
+        .btn-close { filter: invert(1); }
+        #modalImage { border-radius: 15px; max-height: 80vh; object-fit: contain; }
+
+        footer { opacity: 0.5; font-size: 0.8rem; }
     </style>
-     <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
         <div class="container px-5">
-            <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Giovanne Oliveira</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <a class="navbar-brand text-white" href="index.html">G<span style="color: var(--accent-blue)">.</span>OLIVEIRA</a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="resume.html">Resumo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Projetos</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="projects.html">Projetos</a></li>
                     <li class="nav-item"><a class="nav-link" href="cert.html">Certificados</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact.html">Contato</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-</head>
-<body>
-    <div class="container py-5">
-        <h1 class="text-center">Visualizador de Imagens</h1>
-        <div class="row mt-4">
-            <div class="col-md-4">
-                <img src="/assets/img /298e661b-8a91-4fe4-a5f6-adcfbbe0e55f.jpeg" alt="Image 1" class="thumbnail img-fluid" onclick="openModal(this.src)">
+
+    <main class="container">
+        <header class="page-header text-center" data-aos="fade-down">
+            <h1 class="display-5 fw-800">Criações <span class="text-gradient">& Portfólio</span></h1>
+            <p class="text-dim">Clique nas imagens para ampliar os detalhes</p>
+        </header>
+
+        <div class="row g-4" data-aos="fade-up">
+            <div class="col-sm-6 col-md-4">
+                <div class="gallery-item" onclick="openModal('assets/img/298e661b-8a91-4fe4-a5f6-adcfbbe0e55f.jpeg', 'Social Media Design')">
+                    <img src="assets/img/298e661b-8a91-4fe4-a5f6-adcfbbe0e55f.jpeg" alt="Projeto">
+                    <div class="gallery-overlay"><div class="view-icon"><i class="bi bi-fullscreen"></i></div><span>Ver Projeto</span></div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <img src="/assets/img /56bbd8af-fc1a-4f84-84eb-018f40c38363.jpeg" alt="Image 2" class="thumbnail img-fluid" onclick="openModal(this.src)">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="gallery-item" onclick="openModal('assets/img/56bbd8af-fc1a-4f84-84eb-018f40c38363.jpeg', 'Marketing Digital')">
+                    <img src="assets/img/56bbd8af-fc1a-4f84-84eb-018f40c38363.jpeg" alt="Projeto">
+                    <div class="gallery-overlay"><div class="view-icon"><i class="bi bi-fullscreen"></i></div><span>Ver Projeto</span></div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <img src="/assets/img /9e8d686d-7a79-4fc9-808c-0548bcb0d4bb.jpeg" alt="Image 3" class="thumbnail img-fluid" onclick="openModal(this.src)">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="gallery-item" onclick="openModal('assets/img/9e8d686d-7a79-4fc9-808c-0548bcb0d4bb.jpeg', 'Branding')">
+                    <img src="assets/img/9e8d686d-7a79-4fc9-808c-0548bcb0d4bb.jpeg" alt="Projeto">
+                    <div class="gallery-overlay"><div class="view-icon"><i class="bi bi-fullscreen"></i></div><span>Ver Projeto</span></div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <img src="/assets/img /be67c68c-d857-4151-9769-b323e229dd07.jpeg" alt="Image 4" class="thumbnail img-fluid" onclick="openModal(this.src)">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="gallery-item" onclick="openModal('assets/img/MESSI.png', 'Design Esportivo')">
+                    <img src="assets/img/MESSI.png" alt="Messi">
+                    <div class="gallery-overlay"><div class="view-icon"><i class="bi bi-fullscreen"></i></div><span>Ver Projeto</span></div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <img src="/assets/img /Design sem nome.png" alt="Image 5" class="thumbnail img-fluid" onclick="openModal(this.src)">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="gallery-item" onclick="openModal('assets/img/Design%20sem%20nome.png', 'Mockup & Branding')">
+                    <img src="assets/img/Design%20sem%20nome.png" alt="Design">
+                    <div class="gallery-overlay"><div class="view-icon"><i class="bi bi-fullscreen"></i></div><span>Ver Projeto</span></div>
+                </div>
             </div>
-            <div class="col-md-4">
-                <img src="/assets/img /MESSI.png" alt="Image 6" class="thumbnail img-fluid" onclick="openModal(this.src)">
-            </div>
-            <div class="col-md-4">
-                <img src="/assets/img /Instagram post para marketing digital ousado azul (1).png" alt="Image 7" class="thumbnail img-fluid" onclick="openModal(this.src)">
-            </div>
-            <div class="col-md-4">
-                <img src="/assets/img /Instagram post para marketing digital ousado azul.png" alt="Image 8" class="thumbnail img-fluid" onclick="openModal(this.src)">
-            </div>
-            <div class="col-md-4">
-                <img src="/assets/img /food_instagram_story_16.png" alt="Image 9" class="thumbnail img-fluid" onclick="openModal(this.src)">
+
+            <div class="col-sm-6 col-md-4">
+                <div class="gallery-item" onclick="openModal('assets/img/Instagram%20post%20para%20marketing%20digital%20ousado%20azul.png', 'Campanha Digital Ousada')">
+                    <img src="assets/img/Instagram%20post%20para%20marketing%20digital%20ousado%20azul.png" alt="Ads">
+                    <div class="gallery-overlay"><div class="view-icon"><i class="bi bi-fullscreen"></i></div><span>Ver Projeto</span></div>
+                </div>
             </div>
             
+            <div class="col-sm-6 col-md-4">
+                <div class="gallery-item" onclick="openModal('assets/img/food_instagram_story_16.png', 'Gastro Marketing')">
+                    <img src="assets/img/food_instagram_story_16.png" alt="Food Story">
+                    <div class="gallery-overlay"><div class="view-icon"><i class="bi bi-fullscreen"></i></div><span>Ver Projeto</span></div>
+                </div>
+            </div>
         </div>
-    </div>
+    </main>
 
-    <!-- Modal -->
-    <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
+    <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="imageModalLabel">Imagem</h5>
+                    <h5 class="modal-title fw-bold" id="modalTitle">Visualizar</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
-                    <img id="modalImage" src="" alt="Large Image">
+                <div class="modal-body text-center p-2">
+                    <img id="modalImage" src="" class="img-fluid" alt="Expandida">
                 </div>
             </div>
         </div>
     </div>
 
+    <footer class="container py-5 text-center mt-5">
+        <p class="text-dim">© 2024 Giovanne Oliveira • Todos os direitos reservados.</p>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        function openModal(imageSrc) {
-            const modalImage = document.getElementById('modalImage');
-            modalImage.src = imageSrc;
-            const modal = new bootstrap.Modal(document.getElementById('imageModal'));
-            modal.show();
+        // Inicializa animações
+        AOS.init({ duration: 1000, once: true });
+
+        // Função do Modal
+        function openModal(src, title) {
+            document.getElementById('modalImage').src = src;
+            document.getElementById('modalTitle').innerText = title;
+            var myModal = new bootstrap.Modal(document.getElementById('imageModal'));
+            myModal.show();
         }
     </script>
 </body>
