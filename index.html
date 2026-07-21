@@ -1,189 +1,1408 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Giovanne Oliveira | Marketing & UX Strategy</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giovanne Oliveira | Growth, Marketing & UX Strategy</title>
     
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;400;600;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- SEO & OpenGraph Meta Tags -->
+    <meta name="description" content="Website de Marketing Pessoal, Estratégia de Growth, CRM, UX e Performance por Giovanne Oliveira.">
+    <meta name="keywords" content="Giovanne Oliveira, Marketing Digital, Growth Marketing, UX Design, Produto Digital, CRM, Performance">
+    <meta name="author" content="Giovanne Oliveira">
+    <meta property="og:title" content="Giovanne Oliveira | Growth & Marketing Strategy">
+    <meta property="og:description" content="Estratégia orientada por dados, experiência do usuário e alta performance comercial.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="pt_BR">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#090A0F">
+    <link rel="canonical" href="https://giovanneoliveira.com.br/">
+
+    <!-- Schema.org Person -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Giovanne Oliveira",
+      "jobTitle": "Analista de Marketing / Especialista em UX e Growth",
+      "email": "giovanne.olliveiras@gmail.com",
+      "telephone": "+5511998215827",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Vila Progresso, Salto / SP"
+      },
+      "almaMater": ["Universidade Estácio", "CEUNSP", "Anhanguera"]
+    }
+    </script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
+        /* CSS RESET & VARIABLES */
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         :root {
-            --bg: #05070a;
-            --accent: #3b82f6;
-            --text: #ffffff;
-            --text-dim: #94a3b8;
-            --card-glass: rgba(255, 255, 255, 0.03);
+            --bg-dark: #090A0F;
+            --bg-card: rgba(255, 255, 255, 0.03);
+            --bg-card-hover: rgba(255, 255, 255, 0.06);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-highlight: rgba(99, 102, 241, 0.3);
+            
+            /* Accent: Premium Deep Indigo / Electric Purple */
+            --accent: #6366F1;
+            --accent-glow: rgba(99, 102, 241, 0.25);
+            --accent-light: #818CF8;
+            
+            --text-main: #F3F4F6;
+            --text-muted: #9CA3AF;
+            --text-dim: #6B7280;
+            
+            --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            --container-width: 1200px;
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
         }
 
-        body, html {
-            height: 100%; margin: 0;
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: var(--bg); color: var(--text);
+        html {
+            scroll-behavior: smooth;
+            font-family: var(--font-sans);
+            background-color: var(--bg-dark);
+            color: var(--text-main);
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- INTRO DE PRESTÍGIO (MARKETING) --- */
-        #intro-loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 10000;
-            display: flex; justify-content: center; align-items: center;
-        }
-        .intro-word {
-            font-size: clamp(2.5rem, 12vw, 7rem);
-            font-weight: 800; letter-spacing: -4px;
-            position: absolute; opacity: 0; transform: scale(0.8);
-            filter: blur(10px); transition: 0.5s ease;
-        }
-        .intro-word.active { opacity: 1; transform: scale(1); filter: blur(0); }
-
-        /* --- NAVBAR --- */
-        .navbar {
-            backdrop-filter: blur(15px);
-            background: rgba(5, 7, 10, 0.8);
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-            padding: 1.2rem 0;
-        }
-        .navbar-brand { font-weight: 800; letter-spacing: -1px; }
-        .nav-link { font-weight: 600; font-size: 0.9rem; color: var(--text-dim) !important; }
-        .nav-link.active, .nav-link:hover { color: var(--accent) !important; }
-
-        /* --- HERO SECTION --- */
-        .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 100px; }
-        .display-huge {
-            font-size: clamp(3rem, 10vw, 6.5rem);
-            font-weight: 800; line-height: 0.9; letter-spacing: -5px;
-        }
-        .text-gradient {
-            background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        body {
+            line-height: 1.6;
+            background: radial-gradient(circle at 50% 0%, rgba(99, 102, 241, 0.08) 0%, rgba(9, 10, 15, 1) 70%);
+            min-height: 100vh;
         }
 
-        /* --- BENTO GRID (RESUMO DO CURRÍCULO) --- */
-        .bento-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-top: 50px; }
-        .bento-item {
-            background: var(--card-glass);
-            border: 1px solid rgba(255,255,255,0.08);
-            border-radius: 32px; padding: 2rem;
-            transition: 0.4s; position: relative; overflow: hidden;
+        a {
+            color: inherit;
+            text-decoration: none;
         }
-        .bento-item:hover { transform: translateY(-5px); border-color: var(--accent); background: rgba(59, 130, 246, 0.05); }
-        
-        .item-1 { grid-column: span 2; } /* Experiência Atual */
-        .item-2 { grid-column: span 1; } /* Localização */
-        .item-3 { grid-column: span 1; } /* LinkedIn */
-        .item-4 { grid-column: span 2; } /* Formação */
-        .item-5 { grid-column: span 2; } /* Skill Principal */
 
-        .label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; color: var(--accent); letter-spacing: 2px; }
-        .val { font-size: 1.5rem; font-weight: 800; margin-top: 10px; display: block; }
-
-        /* --- IMAGEM --- */
-        .hero-img-wrapper { position: relative; border-radius: 40px; overflow: hidden; height: 600px; }
-        .hero-img-wrapper img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.8); }
-
-        @media (max-width: 991px) {
-            .bento-grid { grid-template-columns: repeat(1, 1fr); }
-            .item-1, .item-2, .item-3, .item-4, .item-5 { grid-column: span 1; }
-            .hero { text-align: center; }
+        /* CONTAINER & LAYOUT */
+        .container {
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 24px;
         }
+
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        /* HEADER / NAVBAR */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            background: rgba(9, 10, 15, 0.7);
+            border-bottom: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .nav-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-size: 1.25rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-badge {
+            width: 10px;
+            height: 10px;
+            background-color: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 12px var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 1px solid transparent;
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: #ffffff;
+            box-shadow: 0 4px 20px var(--accent-glow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.4);
+            background: var(--accent-light);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            border-color: var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* SECTION TITLES */
+        .tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 100px;
+            background: rgba(99, 102, 241, 0.1);
+            border: 1px solid var(--border-highlight);
+            color: var(--accent-light);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .section-desc {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 50px;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 140px;
+            padding-bottom: 80px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.08;
+            letter-spacing: -0.04em;
+            margin-bottom: 24px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            max-width: 580px;
+            font-weight: 400;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        /* HERO COMPOSITION ARCHITECTURE */
+        .hero-card-composition {
+            position: relative;
+            width: 100%;
+            height: 480px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 32px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .hero-card-glow {
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, rgba(0, 0, 0, 0) 60%);
+            pointer-events: none;
+        }
+
+        .hero-profile-box {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .hero-avatar {
+            width: 72px;
+            height: 72px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent) 0%, #4F46E5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            box-shadow: 0 0 25px var(--accent-glow);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-profile-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .hero-profile-info p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .hero-metrics-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 30px;
+        }
+
+        .metric-mini-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 20px;
+        }
+
+        .metric-mini-card label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--text-dim);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .metric-mini-card span {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+
+        /* ABOUT SECTION */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .about-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            transition: border-color 0.3s;
+        }
+
+        .about-card:hover {
+            border-color: var(--border-highlight);
+        }
+
+        .about-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: #fff;
+        }
+
+        .about-card p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        /* SPECIALTIES / CARDS */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .spec-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .spec-card:hover {
+            background: var(--bg-card-hover);
+            border-color: var(--border-highlight);
+            transform: translateY(-4px);
+        }
+
+        .spec-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: var(--radius-sm);
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--accent-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 24px;
+            border: 1px solid var(--border-highlight);
+        }
+
+        .spec-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .spec-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* PROCESS SECTION */
+        .process-flow {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 16px;
+            position: relative;
+        }
+
+        .process-step {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 24px 16px;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .process-step:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        .step-number {
+            font-size: 0.75rem;
+            font-weight: 800;
+            color: var(--accent-light);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .step-name {
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        /* EXPERIENCE SECTION */
+        .exp-container {
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .exp-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-lg);
+            padding: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .exp-card:hover {
+            border-color: var(--border-highlight);
+        }
+
+        .exp-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .exp-role {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .exp-company {
+            font-size: 1.1rem;
+            color: var(--accent-light);
+            font-weight: 600;
+            margin-top: 4px;
+        }
+
+        .exp-period {
+            padding: 6px 14px;
+            border-radius: 100px;
+            background: rgba(255, 255, 255, 0.05);
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+
+        .exp-body p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            margin-bottom: 24px;
+            line-height: 1.7;
+        }
+
+        .exp-list {
+            list-style: none;
+            margin-bottom: 28px;
+        }
+
+        .exp-list li {
+            position: relative;
+            padding-left: 24px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .exp-list li::before {
+            content: "→";
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+        }
+
+        .pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .pill {
+            padding: 6px 14px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        /* TOOLS GRID */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+        }
+
+        .tool-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            transition: all 0.3s;
+        }
+
+        .tool-card:hover {
+            border-color: var(--accent);
+            color: var(--accent-light);
+            background: rgba(99, 102, 241, 0.05);
+            transform: translateY(-2px);
+        }
+
+        /* EDUCATION */
+        .edu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .edu-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-md);
+            padding: 32px;
+        }
+
+        .edu-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .edu-card .inst {
+            color: var(--accent-light);
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 12px;
+        }
+
+        .edu-card .year {
+            font-size: 0.85rem;
+            color: var(--text-dim);
+        }
+
+        /* MARKETING LAB & MINI GAME */
+        .lab-container {
+            background: linear-gradient(180deg, rgba(99, 102, 241, 0.05) 0%, rgba(9, 10, 15, 0.8) 100%);
+            border: 1px solid var(--border-highlight);
+            border-radius: var(--radius-lg);
+            padding: 48px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lab-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+        }
+
+        .game-board {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 32px;
+        }
+
+        .game-column-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .cards-pool, .slots-target {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            min-height: 380px;
+        }
+
+        .draggable-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 16px 20px;
+            font-weight: 600;
+            cursor: grab;
+            user-select: none;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .draggable-card:active {
+            cursor: grabbing;
+        }
+
+        .draggable-card:hover {
+            border-color: var(--accent-light);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .drop-slot {
+            background: rgba(255, 255, 255, 0.02);
+            border: 2px dashed var(--border-color);
+            border-radius: var(--radius-sm);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-dim);
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .drop-slot.drag-over {
+            border-color: var(--accent);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .drop-slot.filled {
+            border-style: solid;
+            border-color: var(--border-color);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .drop-slot.correct {
+            border-color: #10B981;
+            background: rgba(16, 185, 129, 0.1);
+            color: #34D399;
+        }
+
+        .game-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 32px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--radius-md);
+            border: 1px solid var(--border-color);
+        }
+
+        .stat-box {
+            text-align: center;
+        }
+
+        .stat-box val {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--accent-light);
+        }
+
+        .stat-box lbl {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        .game-success-modal {
+            display: none;
+            background: rgba(16, 185, 129, 0.05);
+            border: 1px solid #10B981;
+            border-radius: var(--radius-md);
+            padding: 32px;
+            margin-top: 32px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .game-success-modal h3 {
+            color: #34D399;
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        .game-success-modal p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            max-width: 700px;
+            margin: 0 auto 24px auto;
+            line-height: 1.7;
+        }
+
+        /* FUNNEL EXPLANATION */
+        .funnel-explanation {
+            margin-top: 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+        }
+
+        .funnel-step-desc {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-sm);
+            padding: 20px;
+        }
+
+        .funnel-step-desc h5 {
+            color: var(--accent-light);
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .funnel-step-desc p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* CONTACT CTA */
+        .cta-section {
+            text-align: center;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.12) 0%, rgba(9, 10, 15, 0) 70%);
+        }
+
+        .cta-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 24px;
+            letter-spacing: -0.03em;
+        }
+
+        .cta-actions {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        /* FOOTER */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 0.85rem;
+        }
+
+        /* KEYFRAMES */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            .process-flow {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .game-board {
+                grid-template-columns: 1fr;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .process-flow {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .nav-links {
+                display: none;
+            }
+            .hero-title {
+                font-size: 2.3rem;
+            }
+            .cta-title {
+                font-size: 2.2rem;
+            }
+            section {
+                padding: 80px 0;
+            }
+        }
+        .hero-counters { display: flex; gap: 28px; margin: 0 0 34px; }
+        .hero-counter { display: grid; gap: 1px; }.hero-counter strong { font-size: 1.35rem; color: var(--accent-light); font-variant-numeric: tabular-nums; }.hero-counter span { color: var(--text-muted); font-size: .75rem; text-transform: uppercase; letter-spacing: .07em; }
+
+        /* Premium interaction layer */
+        :focus-visible { outline: 3px solid var(--accent-light); outline-offset: 4px; }
+        .scroll-progress { position: fixed; inset: 0 auto auto 0; z-index: 200; width: 0; height: 3px; background: linear-gradient(90deg, var(--accent), #a78bfa); box-shadow: 0 0 14px var(--accent); }
+        header.is-compact { background: rgba(9, 10, 15, .9); box-shadow: 0 12px 32px rgba(0,0,0,.22); }
+        header.is-compact .nav-wrapper { height: 64px; }
+        .nav-links a.active { color: #fff; }
+        .hero::before { content: ''; position: absolute; width: 38rem; height: 38rem; right: -13rem; top: 8rem; background: radial-gradient(circle, rgba(129,140,248,.14), transparent 68%); filter: blur(8px); animation: ambient 12s ease-in-out infinite alternate; pointer-events: none; }
+        .hero-card-composition, .about-card, .spec-card, .exp-card, .edu-card, .tool-card { box-shadow: 0 16px 38px rgba(0,0,0,.12); }
+        .hero-card-composition { animation: float 7s ease-in-out infinite; }
+        .metric-mini-card span[data-count] { font-variant-numeric: tabular-nums; }
+        .reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.8,.2,1); }
+        .reveal.is-visible { opacity: 1; transform: none; }
+        .back-to-top { position: fixed; right: 22px; bottom: 22px; z-index: 90; width: 46px; height: 46px; border: 1px solid var(--border-highlight); border-radius: 50%; color: #fff; background: rgba(20,21,37,.82); backdrop-filter: blur(12px); cursor: pointer; opacity: 0; transform: translateY(12px); pointer-events: none; transition: .25s ease; }
+        .back-to-top.is-visible { opacity: 1; transform: none; pointer-events: auto; }
+        @keyframes ambient { to { transform: translate(-45px, 35px) scale(1.08); } }
+        @keyframes float { 50% { transform: translateY(-9px); } }
+
+        /* Marketing Lab */
+        .lab-container::before { content: ''; position: absolute; width: 460px; height: 460px; top: -240px; left: -170px; border-radius: 50%; background: radial-gradient(circle, rgba(99,102,241,.17), transparent 68%); pointer-events: none; }
+        .lab-intro { display: flex; justify-content: space-between; align-items: center; gap: 20px; margin-bottom: 20px; }
+        .lab-status { color: var(--text-muted); font-size: .9rem; }
+        .lab-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 26px; }
+        .lab-actions .btn { padding: 10px 16px; font-size: .82rem; }
+        .game-board { position: relative; }
+        .cards-pool, .slots-target { min-height: 330px; }
+        .draggable-card { min-height: 64px; position: relative; cursor: grab; touch-action: manipulation; }
+        .draggable-card::after { content: '⋮⋮'; color: var(--text-dim); letter-spacing: -3px; }
+        .draggable-card.selected { border-color: var(--accent-light); background: rgba(99,102,241,.16); box-shadow: 0 0 0 3px rgba(99,102,241,.15); transform: translateY(-2px); }
+        .draggable-card.is-dragging { opacity: .35; }
+        .drop-slot { height: auto; min-height: 64px; padding: 8px; justify-content: stretch; text-align: left; position: relative; }
+        .drop-slot::before { content: attr(data-label); align-self: center; padding-left: 12px; font-size: .75rem; font-weight: 800; text-transform: uppercase; letter-spacing: .07em; color: var(--text-dim); }
+        .drop-slot[data-order="0"] { border-color: rgba(96,165,250,.3); } .drop-slot[data-order="1"] { border-color: rgba(167,139,250,.3); } .drop-slot[data-order="2"] { border-color: rgba(251,191,36,.3); } .drop-slot[data-order="3"] { border-color: rgba(251,146,60,.3); } .drop-slot[data-order="4"] { border-color: rgba(244,63,94,.3); }
+        .drop-slot.filled::before { display: none; }.drop-slot .draggable-card { width: 100%; border-color: transparent; background: rgba(255,255,255,.06); }
+        .drop-slot.correct { border-color: #34d399; background: rgba(16,185,129,.1); animation: correctPop .45s ease; }
+        .drop-slot.incorrect { border-color: #fb7185; animation: shake .4s ease; }
+        .game-stats { flex-wrap: wrap; gap: 20px; }
+        .stat-box { min-width: 86px; }.stat-box val { font-variant-numeric: tabular-nums; }
+        .ranking-panel { margin-top: 18px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .ranking-item { padding: 13px; border: 1px solid var(--border-color); border-radius: 12px; background: rgba(255,255,255,.025); text-align: center; }
+        .ranking-item strong { display: block; color: var(--accent-light); font-size: 1rem; }.ranking-item span { font-size: .72rem; color: var(--text-muted); }
+        .game-success-modal { position: relative; }.game-success-modal.is-open { display: block; }.score-line { font-size: 2.1rem; font-weight: 800; color: #fff; margin: 10px 0; }.medal { display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border-radius: 99px; background: rgba(251,191,36,.12); color: #fcd34d; font-weight: 700; }
+        .toast { position: fixed; z-index: 300; left: 50%; bottom: 24px; transform: translate(-50%, 100px); padding: 12px 18px; border-radius: 12px; border: 1px solid rgba(52,211,153,.45); background: #11251f; color: #d1fae5; box-shadow: 0 16px 34px rgba(0,0,0,.3); transition: transform .3s ease; }.toast.show { transform: translate(-50%, 0); }
+        .tutorial { position: fixed; inset: 0; z-index: 250; display: grid; place-items: center; padding: 24px; background: rgba(3,4,8,.74); backdrop-filter: blur(8px); }.tutorial-card { max-width: 460px; padding: 32px; border: 1px solid var(--border-highlight); border-radius: 20px; background: #12131e; box-shadow: 0 28px 80px rgba(0,0,0,.5); text-align: center; }.tutorial-card p { color: var(--text-muted); margin: 12px 0 22px; }
+        @keyframes correctPop { 50% { transform: scale(1.025); box-shadow: 0 0 28px rgba(52,211,153,.32); } } @keyframes shake { 25% { transform: translateX(-7px); } 75% { transform: translateX(7px); } }
+        @media (max-width: 700px) { .lab-container { padding: 28px 18px; }.ranking-panel { grid-template-columns: 1fr 1fr; }.lab-intro { align-items: flex-start; flex-direction: column; }.draggable-card { cursor: pointer; } }
+        @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; scroll-behavior: auto !important; transition-duration: .01ms !important; } }
     </style>
 </head>
 <body>
+    <div class="scroll-progress" aria-hidden="true"></div>
 
-    <div id="intro-loader">
-        <div class="intro-word" id="w1">STRATEGY</div>
-        <div class="intro-word" id="w2">PERFORMANCE</div>
-        <div class="intro-word" id="w3">UX DESIGN</div>
-        <div class="intro-word" id="w4">GROWTH</div>
-    </div>
-
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand text-white" href="index.html">G<span style="color: var(--accent)">.</span>OLIVEIRA</a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
-                <i class="bi bi-list text-white fs-1"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navContent">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Início</a></li>
-                    <li class="nav-item"><a class="nav-link" href="resume.html">Currículo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="projects.html">Projetos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="cert.html">Certificados</a></li>
-                    <li class="nav-item"><a class="nav-link btn btn-primary rounded-pill px-4 ms-lg-3 text-white" href="contact.html">Vamos Conversar?</a></li>
-                </ul>
-            </div>
+    <!-- NAVBAR -->
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">
+                <span class="logo-badge"></span>
+                GIOVANNE OLIVEIRA
+            </a>
+            <ul class="nav-links">
+                <li><a href="#sobre">Sobre</a></li>
+                <li><a href="#especialidades">Especialidades</a></li>
+                <li><a href="#experiencia">Trajetória</a></li>
+                <li><a href="#lab">Marketing Lab</a></li>
+                <li><a href="#contato">Contato</a></li>
+            </ul>
+            <a href="#contato" class="btn btn-secondary">Vamos Conversar</a>
         </div>
-    </nav>
+    </header>
 
-    <main class="container hero">
-        <div class="row align-items-center g-5">
-            <div class="col-lg-7" data-aos="fade-up">
-                <h1 class="display-huge mb-4">Marketing <br> <span class="text-gradient">Performance.</span></h1>
-                <p class="lead text-dim fs-4 mb-5 pe-lg-5">
-                    Olá, sou Giovanne Oliveira. Unindo Análise de Dados e UX Design para criar estratégias que não apenas aparecem, mas convertem.
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <span class="tag">Growth & UX Strategist</span>
+                <h1 class="hero-title">Marketing e Estratégia Orientada por Dados.</h1>
+                <p class="hero-subtitle">
+                    Atuo na interseção entre tecnologia, experiência do usuário e comunicação comercial para impulsionar a aquisição, retenção e o posicionamento de marca.
                 </p>
-                
-                <div class="bento-grid">
-                    <div class="bento-item item-1">
-                        <span class="label">Experiência Atual</span>
-                        <span class="val">Analista de Marketing no Grupo Base</span>
-                    </div>
-                    <div class="bento-item item-2">
-                        <span class="label">Foco</span>
-                        <span class="val">ROI & KPIs</span>
-                    </div>
-                    <div class="bento-item item-3">
-                        <a href="#" class="text-decoration-none text-white">
-                            <span class="label">Social</span>
-                            <span class="val">LinkedIn <i class="bi bi-arrow-up-right"></i></span>
-                        </a>
-                    </div>
-                    <div class="bento-item item-4">
-                        <span class="label">Educação</span>
-                        <span class="val">MBA em UX & Product Design</span>
-                    </div>
-                    <div class="bento-item item-5">
-                        <span class="label">Diferencial</span>
-                        <span class="val">Marketing Data-Driven + ADS</span>
-                    </div>
+                <div class="hero-counters" aria-label="Destaques profissionais">
+                    <div class="hero-counter"><strong data-counter="2">0</strong><span>MBAs concluídos</span></div>
+                    <div class="hero-counter"><strong data-counter="2">0</strong><span>Graduações</span></div>
+                    <div class="hero-counter"><strong data-counter="6">0</strong><span>Áreas de atuação</span></div>
+                </div>
+                <div class="hero-actions">
+                    <a href="#experiencia" class="btn btn-primary">Conheça minha trajetória →</a>
+                    <a href="https://www.linkedin.com/in/giovanne-oliveira-095a88188/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+                    <a href="mailto:giovanne.olliveiras@gmail.com" class="btn btn-secondary">Contato Direto</a>
                 </div>
             </div>
-
-            <div class="col-lg-5 d-none d-lg-block" data-aos="zoom-in">
-                <div class="hero-img-wrapper">
+            
+            <div class="hero-card-composition">
+                <div class="hero-card-glow"></div>
+                <div class="hero-profile-box">
+                    <div class="hero-avatar">GO</div>
+                    <div class="hero-profile-info">
+                        <h3>Giovanne Oliveira</h3>
+                        <p>Analista de Marketing & UX Specialist</p>
+                    </div>
+                </div>
+                
+                <div class="hero-metrics-list">
+                    <div class="metric-mini-card">
+                        <label>Formação Técnica</label>
+                        <span>Análise e Dev. Sistemas</span>
+                    </div>
+                    <div class="metric-mini-card">
+                        <label>Pós-Graduação</label>
+                        <span>MBA UX & Product Design</span>
+                    </div>
+                    <div class="metric-mini-card">
+                        <label>Core Focus</label>
+                        <span>Leads, CRM & Performance</span>
+                    </div>
+                    <div class="metric-mini-card">
+                        <label>Estratégia</label>
+                        <span>Comunicação & Eventos</span>
+                    </div>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <!-- SOBRE SECTION -->
+    <section id="sobre">
+        <div class="container">
+            <span class="tag">Visão Estratégica</span>
+            <h2 class="section-title">Engenharia de processos aplicada ao Marketing.</h2>
+            <p class="section-desc">Uma abordagem analítica baseada na união entre dados, tecnologia e comportamento do usuário.</p>
+            
+            <div class="about-grid">
+                <div class="about-card">
+                    <h3>Quem sou</h3>
+                    <p>
+                        Sou graduado em Análise e Desenvolvimento de Sistemas (CEUNSP) e em Marketing (Universidade Estácio), com dois MBAs concluídos na Anhanguera em Design de Produtos Digitais e Marketing & Experiência do Usuário.
+                    </p>
+                    <p>
+                        Essa combinação técnico-estratégica me permite conectar a visão de produto e código à eficiência operacional de campanhas digitais e gestão de marca.
+                    </p>
+                </div>
+                
+                <div class="about-card">
+                    <h3>Como penso & trabalho</h3>
+                    <p>
+                        Acredito na comunicação integrada: da qualificação de leads ao alinhamento com a equipe de vendas internas. Atuo desde o planejamento orçamentário e gestão de inventários/estoque para eventos até a análise detalhada de KPIs, ROI e Reclame Aqui.
+                    </p>
+                    <p>
+                        Cada ponto de contato com a marca deve ser desenhado com precisão para maximizar a conversão e garantir consistência na reputação corporativa.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ESPECIALIDADES SECTION -->
+    <section id="especialidades">
+        <div class="container">
+            <span class="tag">Competências</span>
+            <h2 class="section-title">Especialidades de Negócio</h2>
+            <p class="section-desc">Domínios de atuação baseados em prática e fundamentação acadêmica.</p>
+            
+            <div class="grid-cards">
+                <div class="spec-card">
+                    <div class="spec-icon">🎯</div>
+                    <h3>Planejamento Estratégico</h3>
+                    <p>Desenvolvimento e execução de campanhas completas para promoção de marcas, produtos e serviços corporativos.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">📈</div>
+                    <h3>Gestão de Leads & Vendas</h3>
+                    <p>Qualificação, acompanhamento de leads e alinhamento contínuo com vendas internas para otimizar métricas comerciais.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">⚡</div>
+                    <h3>Análise de Performance</h3>
+                    <p>Monitoramento e interpretação de KPIs, cálculo de ROI e otimização das métricas de conversão de funil.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">🎨</div>
+                    <h3>UX & Product Design</h3>
+                    <p>Aplicação de metodologias de experiência do usuário na construção de materiais, touchpoints e comunicação digital.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">🤝</div>
+                    <h3>Eventos & Patrocínios</h3>
+                    <p>Organização de workshops, convenções de vendas, logística de materiais, contratos de patrocínio e parcerias.</p>
+                </div>
+
+                <div class="spec-card">
+                    <div class="spec-icon">🛡️</div>
+                    <h3>Reputação de Marca & CRM</h3>
+                    <p>Gestão da presença institucional em plataformas como Reclame Aqui, e-mail marketing e suporte ao cliente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESSO SECTION -->
+    <section id="processo">
+        <div class="container">
+            <span class="tag">Framework</span>
+            <h2 class="section-title">Como transformo estratégia em resultado</h2>
+            <p class="section-desc">Um fluxo de trabalho contínuo focado na evolução sustentável dos indicadores.</p>
+
+            <div class="process-flow">
+                <div class="process-step">
+                    <span class="step-number">01</span>
+                    <div class="step-name">Pesquisa</div>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">02</span>
+                    <div class="step-name">Planejamento</div>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">03</span>
+                    <div class="step-name">Execução</div>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">04</span>
+                    <div class="step-name">Otimização</div>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">05</span>
+                    <div class="step-name">Análise</div>
+                </div>
+                <div class="process-step">
+                    <span class="step-number">06</span>
+                    <div class="step-name">Crescimento</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPERIENCIA SECTION -->
+    <section id="experiencia">
+        <div class="container">
+            <span class="tag">Cases & Histórico</span>
+            <h2 class="section-title">Trajetória Profissional</h2>
+            <p class="section-desc">Projetos, responsabilidades e atuação direta em corporações.</p>
+
+            <div class="exp-container">
+                <!-- CASE 1 -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Analista de Marketing</div>
+                            <div class="exp-company">Grupo Base</div>
+                        </div>
+                        <span class="exp-period">2024 — Atual</span>
+                    </div>
+                    <div class="exp-body">
+                        <p>Atuação estratégica no desenvolvimento e execução de campanhas digitais e institucionais, com foco em aquisição e eficiência na conversão de vendas.</p>
+                        <ul class="exp-list">
+                            <li>Desenvolvimento e execução de campanhas integradas para promoção da marca e produtos.</li>
+                            <li>Qualificação de leads e alinhamento direto com o setor de vendas internas.</li>
+                            <li>Criação e curadoria de conteúdo focado em engajamento e alcance orgânico/pago.</li>
+                            <li>Acompanhamento rigoroso de KPIs, ROI e relatórios de performance para stakeholders.</li>
+                            <li>Pesquisa de mercado e análise contínua de concorrência.</li>
+                        </ul>
+                        <div class="pills">
+                            <span class="pill">Planejamento Estratégico</span>
+                            <span class="pill">Gestão de Leads</span>
+                            <span class="pill">Análise de ROI</span>
+                            <span class="pill">CRM & Automação</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CASE 2 -->
+                <div class="exp-card">
+                    <div class="exp-header">
+                        <div>
+                            <div class="exp-role">Atuação em Marketing & Operações</div>
+                            <div class="exp-company">IFC Indústria e Comércio de Condutores Elétricos Ltda</div>
+                        </div>
+                        <span class="exp-period">2022 — 2024</span>
+                    </div>
+                    <div class="exp-body">
+                        <p>Gestão de infraestrutura de marketing, e-mail marketing, patrocínios e coordenação logística para grandes eventos e convenções.</p>
+                        <ul class="exp-list">
+                            <li>Gestão de orçamentos da área, controle de estoque e logística para eventos.</li>
+                            <li>Desenvolvimento de campanhas de e-mail marketing e estratégias digitais.</li>
+                            <li>Coordenação técnica e operacional em treinamentos, workshops e convenções de vendas.</li>
+                            <li>Participação ativa em projetos de patrocínio e acompanhamento de métricas de retorno.</li>
+                        </ul>
+                        <div class="pills">
+                            <span class="pill">Gestão de Orçamento</span>
+                            <span class="pill">Logística de Eventos</span>
+                            <span class="pill">E-mail Marketing</span>
+                            <span class="pill">Relacionamento com Parceiros</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FERRAMENTAS & STACK -->
+    <section id="ferramentas">
+        <div class="container">
+            <span class="tag">Tech & Tools</span>
+            <h2 class="section-title">Ecossistema de Ferramentas</h2>
+            <p class="section-desc">Tecnologias e softwares utilizados no cotidiano de análise e execução.</p>
+
+            <div class="tools-grid">
+                <div class="tool-card">CRM & Automação</div>
+                <div class="tool-card">E-mail Marketing</div>
+                <div class="tool-card">Plataformas de Ads</div>
+                <div class="tool-card">Análise de Dados</div>
+                <div class="tool-card">Gestão de Mídias</div>
+                <div class="tool-card">Reclame Aqui</div>
+                <div class="tool-card">HTML / CSS / JS</div>
+                <div class="tool-card">UX & UI Design</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMAÇÃO ACADÊMICA -->
+    <section id="formacao">
+        <div class="container">
+            <span class="tag">Educação</span>
+            <h2 class="section-title">Formação Acadêmica</h2>
+            <p class="section-desc">Especializações e graduações técnicas e estratégicas.</p>
+
+            <div class="edu-grid">
+                <div class="edu-card">
+                    <h4>MBA em Design de Produtos Digitais</h4>
+                    <div class="inst">Anhanguera</div>
+                    <div class="year">Concluído em 2024</div>
+                </div>
+                <div class="edu-card">
+                    <h4>MBA em Marketing e UX</h4>
+                    <div class="inst">Anhanguera</div>
+                    <div class="year">Concluído em 2024</div>
+                </div>
+                <div class="edu-card">
+                    <h4>Análise e Dev. de Sistemas</h4>
+                    <div class="inst">CEUNSP</div>
+                    <div class="year">2021 — 2023</div>
+                </div>
+                <div class="edu-card">
+                    <h4>Graduação em Marketing</h4>
+                    <div class="inst">Universidade Estácio</div>
+                    <div class="year">Concluído em 2024</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MARKETING LAB - MINI GAME -->
+    <section id="lab">
+        <div class="container">
+            <div class="lab-container">
+                <div class="lab-header">
+                    <span class="tag">Interactive Lab</span>
+                    <h2 class="section-title">Marketing Lab</h2>
+                    <p class="section-desc" style="margin-bottom:0;">Desafio: Monte a ordem correta do Funil de Vendas de Marketing e teste seus conhecimentos estratégicos.</p>
+                </div>
+
+                <div class="game-board">
+                    <!-- POOL OF CARDS -->
+                    <div>
+                        <div class="game-column-title">Etapas Disponíveis (Arraste)</div>
+                        <div class="cards-pool" id="cardsPool" aria-label="Cartas disponíveis. Arraste ou selecione uma carta e depois um espaço do funil.">
+                            <!-- Cards inserted dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- TARGET SLOTS -->
+                    <div>
+                        <div class="game-column-title">Estrutura do Funil (Solte aqui)</div>
+                        <div class="slots-target" id="slotsTarget" aria-label="Estrutura do funil">
+                            <div class="drop-slot" data-order="0" data-label="1 · Topo" role="button" tabindex="0" aria-label="Etapa 1, topo do funil"></div>
+                            <div class="drop-slot" data-order="1" data-label="2 · Meio" role="button" tabindex="0" aria-label="Etapa 2, meio do funil"></div>
+                            <div class="drop-slot" data-order="2" data-label="3 · Qualificação" role="button" tabindex="0" aria-label="Etapa 3, qualificação"></div>
+                            <div class="drop-slot" data-order="3" data-label="4 · Decisão" role="button" tabindex="0" aria-label="Etapa 4, decisão"></div>
+                            <div class="drop-slot" data-order="4" data-label="5 · Fundo" role="button" tabindex="0" aria-label="Etapa 5, fundo do funil"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STATS -->
+                <div class="game-stats">
+                    <div class="stat-box">
+                        <val id="timerVal">00:00</val>
+                        <lbl>Tempo</lbl>
+                    </div>
+                    <div class="stat-box">
+                        <val id="accuracyVal">100%</val>
+                        <lbl>Precisão</lbl>
+                    </div>
+                    <div class="stat-box">
+                        <val id="attemptsVal">0</val>
+                        <lbl>Tentativas</lbl>
+                    </div>
+                    <div class="stat-box">
+                        <val id="scoreVal">—</val>
+                        <lbl>Score</lbl>
+                    </div>
+                </div>
+
+                <div class="lab-actions" aria-label="Controles do desafio">
+                    <button class="btn btn-secondary" type="button" id="restartGame">Recomeçar desafio</button>
+                    <button class="btn btn-secondary" type="button" id="reshuffleGame">Embaralhar novamente</button>
+                    <button class="btn btn-secondary" type="button" id="showAnswer">Ver resposta</button>
+                    <button class="btn btn-secondary" type="button" id="shareGame">Compartilhar resultado</button>
+                </div>
+                <div class="ranking-panel" aria-label="Seu ranking local">
+                    <div class="ranking-item"><strong id="bestScore">—</strong><span>Maior pontuação</span></div>
+                    <div class="ranking-item"><strong id="bestTime">—</strong><span>Melhor tempo</span></div>
+                    <div class="ranking-item"><strong id="bestAccuracy">—</strong><span>Melhor precisão</span></div>
+                    <div class="ranking-item"><strong id="gamesPlayed">0</strong><span>Partidas concluídas</span></div>
+                </div>
+
+                <!-- SUCCESS MODAL -->
+                <div class="game-success-modal" id="successBox">
+                    <h3>Você concluiu o Marketing Lab.</h3>
+                    <div class="medal" id="medalVal">🏅 Medalha</div>
+                    <div class="score-line" id="finalScore">0 pontos</div>
+                    <p id="resultSummary"></p>
+                    <p>
+                        Assim como neste desafio, acredito que boas estratégias de Marketing começam pela compreensão da jornada do cliente e terminam em decisões orientadas por dados. Esse é exatamente o raciocínio que aplico diariamente em projetos de Marketing, Growth, CRM, UX e Performance.
+                    </p>
+                    <a href="#experiencia" class="btn btn-primary">Conheça minha experiência</a>
+                    <button class="btn btn-secondary" type="button" id="playAgain">Jogar novamente</button>
+                    <button class="btn btn-secondary" type="button" id="shareResult">Compartilhar resultado</button>
+                </div>
+
+                <!-- FUNNEL EXPLANATION -->
+                <div class="funnel-explanation">
+                    <div class="funnel-step-desc">
+                        <h5>1. Descoberta</h5>
+                        <p>Momento em que o usuário conhece a marca e identifica um problema ou necessidade.</p>
+                    </div>
+                    <div class="funnel-step-desc">
+                        <h5>2. Consideração</h5>
+                        <p>Avaliação das soluções disponíveis no mercado e comparação de opções.</p>
+                    </div>
+                    <div class="funnel-step-desc">
+                        <h5>3. Leads</h5>
+                        <p>Captura de informações de contato para nutrição e qualificação comercial.</p>
+                    </div>
+                    <div class="funnel-step-desc">
+                        <h5>4. Conversão</h5>
+                        <p>Transformação da oportunidade em cliente efetivo através de abordagens assertivas.</p>
+                    </div>
+                    <div class="funnel-step-desc">
+                        <h5>5. Compra</h5>
+                        <p>Conclusão bem-sucedida da jornada e início do relacionamento e retenção.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACT CTA SECTION -->
+    <section class="cta-section" id="contato">
+        <div class="container">
+            <span class="tag">Conexão</span>
+            <h2 class="cta-title">Vamos conversar sobre o seu próximo projeto?</h2>
+            <p class="section-desc" style="margin: 0 auto;">Estou disponível para novas oportunidades estratégicas e desafios em Marketing e Growth.</p>
+            
+            <div class="cta-actions">
+                <a href="https://linkedin.com" target="_blank" class="btn btn-primary">LinkedIn</a>
+                <a href="https://wa.me/5511998215827" target="_blank" class="btn btn-secondary">WhatsApp</a>
+                <a href="mailto:giovanne.olliveiras@gmail.com" class="btn btn-secondary">giovanne.olliveiras@gmail.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <p>© 2026 Giovanne Oliveira. Design & Desenvolvimento de alta performance.</p>
+        </div>
+    </footer>
+    <button class="back-to-top" type="button" aria-label="Voltar ao topo" title="Voltar ao topo">↑</button>
+    <div class="toast" role="status" aria-live="polite"></div>
+
     <script>
-        // Lógica de Intro de Marketing
-        const words = ['w1', 'w2', 'w3', 'w4'];
-        let i = 0;
-
-        function playIntro() {
-            if(i < words.length) {
-                if(i > 0) document.getElementById(words[i-1]).classList.remove('active');
-                document.getElementById(words[i]).classList.add('active');
-                i++;
-                setTimeout(playIntro, 500);
-            } else {
-                setTimeout(() => {
-                    document.getElementById('intro-loader').style.opacity = '0';
-                    document.getElementById('intro-loader').style.transition = '1s';
-                    setTimeout(() => {
-                        document.getElementById('intro-loader').style.display = 'none';
-                        AOS.init({ duration: 1000, once: true });
-                    }, 1000);
-                }, 500);
+        (() => {
+            'use strict';
+            const $ = (selector, parent = document) => parent.querySelector(selector);
+            const $$ = (selector, parent = document) => [...parent.querySelectorAll(selector)];
+            const funnel = ['Descoberta', 'Consideração', 'Leads', 'Conversão', 'Compra'];
+            const storageKey = 'giovanne-marketing-lab-v2';
+            const pool = $('#cardsPool'), slots = $$('.drop-slot'), toast = $('.toast');
+            const state = { attempts: 0, errors: 0, seconds: 0, interval: null, started: false, ended: false, selected: null, order: [] };
+            const formatTime = seconds => `${String(Math.floor(seconds / 60)).padStart(2, '0')}:${String(seconds % 60).padStart(2, '0')}`;
+            const shuffle = list => [...list].sort(() => Math.random() - .5);
+            const getStats = () => { try { return JSON.parse(localStorage.getItem(storageKey)) || { bestScore: 0, bestTime: null, bestAccuracy: 0, games: 0 }; } catch { return { bestScore: 0, bestTime: null, bestAccuracy: 0, games: 0 }; } };
+            const notify = message => { toast.textContent = message; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 2600); };
+            const accuracy = () => state.attempts ? Math.round(((state.attempts - state.errors) / state.attempts) * 100) : 100;
+            const score = () => Math.max(0, Math.round(1000 - state.seconds * 3 - state.errors * 55 - Math.max(0, state.attempts - funnel.length) * 12));
+            const medal = points => points >= 940 ? ['💎', 'Marketing Master'] : points >= 850 ? ['🥇', 'Ouro'] : points >= 700 ? ['🥈', 'Prata'] : ['🥉', 'Bronze'];
+            function updateUI() { $('#timerVal').textContent = formatTime(state.seconds); $('#attemptsVal').textContent = state.attempts; $('#accuracyVal').textContent = `${accuracy()}%`; $('#scoreVal').textContent = state.started ? score() : '—'; }
+            function updateRanking() { const stats = getStats(); $('#bestScore').textContent = stats.bestScore ? `${stats.bestScore} pts` : '—'; $('#bestTime').textContent = stats.bestTime === null ? '—' : formatTime(stats.bestTime); $('#bestAccuracy').textContent = stats.bestScore ? `${stats.bestAccuracy}%` : '—'; $('#gamesPlayed').textContent = stats.games; }
+            function startTimer() { if (state.started || state.ended) return; state.started = true; state.interval = setInterval(() => { state.seconds += 1; updateUI(); }, 1000); }
+            function createCard(name) { const card = document.createElement('button'); card.type = 'button'; card.className = 'draggable-card'; card.draggable = true; card.dataset.name = name; card.setAttribute('aria-label', `Carta ${name}. Selecione e depois escolha uma etapa.`); card.innerHTML = `<span>${name}</span>`;
+                card.addEventListener('click', () => selectCard(card));
+                card.addEventListener('dragstart', event => { startTimer(); state.selected = card; card.classList.add('is-dragging'); event.dataTransfer.effectAllowed = 'move'; event.dataTransfer.setData('text/plain', name); });
+                card.addEventListener('dragend', () => card.classList.remove('is-dragging'));
+                return card;
             }
-        }
-        window.onload = playIntro;
+            function selectCard(card) { if (state.ended) return; $$('.draggable-card').forEach(item => item.classList.remove('selected')); state.selected = card; card.classList.add('selected'); startTimer(); notify('Agora toque ou clique na etapa desejada.'); }
+            function resetSlots() { slots.forEach(slot => { slot.className = 'drop-slot'; slot.replaceChildren(); }); }
+            function resetGame(newOrder = false) { clearInterval(state.interval); Object.assign(state, { attempts: 0, errors: 0, seconds: 0, interval: null, started: false, ended: false, selected: null, order: newOrder || !state.order.length ? shuffle(funnel) : state.order }); pool.replaceChildren(); resetSlots(); state.order.forEach(name => pool.append(createCard(name))); $('#successBox').classList.remove('is-open'); updateUI(); }
+            function feedback(slot, good) { slot.classList.remove('incorrect', 'correct'); if (good) { slot.classList.add('correct'); if (navigator.vibrate) navigator.vibrate(18); } else { slot.classList.add('incorrect'); setTimeout(() => slot.classList.remove('incorrect'), 450); } }
+            function placeCard(slot, card) { if (!card || state.ended) return; startTimer(); const existing = $('.draggable-card', slot); if (existing === card) return;
+                state.attempts += 1;
+                if (existing) pool.append(existing);
+                slot.append(card); slot.classList.add('filled'); card.classList.remove('selected'); state.selected = null;
+                const good = card.dataset.name === funnel[Number(slot.dataset.order)];
+                if (!good) state.errors += 1;
+                feedback(slot, good); updateUI();
+                if ($$('.drop-slot .draggable-card').length === funnel.length) {
+                    const solved = slots.every(item => $('.draggable-card', item)?.dataset.name === funnel[Number(item.dataset.order)]);
+                    if (solved) finishGame(); else notify('Quase lá: reorganize as etapas até completar a sequência correta.');
+                }
+            }
+            function finishGame() { state.ended = true; clearInterval(state.interval); const points = score(), precision = accuracy(), [icon, label] = medal(points); const stats = getStats(); const next = { bestScore: Math.max(stats.bestScore, points), bestTime: stats.bestTime === null ? state.seconds : Math.min(stats.bestTime, state.seconds), bestAccuracy: Math.max(stats.bestAccuracy, precision), games: stats.games + 1 }; localStorage.setItem(storageKey, JSON.stringify(next));
+                $('#medalVal').textContent = `${icon} ${label}`; $('#finalScore').textContent = `${points} pontos`; $('#resultSummary').textContent = `Tempo: ${formatTime(state.seconds)} · Precisão: ${precision}% · Erros: ${state.errors} · Tentativas: ${state.attempts}`; $('#successBox').classList.add('is-open'); updateRanking(); updateUI(); $('#successBox').scrollIntoView({ behavior: 'smooth', block: 'center' }); notify('Desafio concluído. Resultado salvo localmente!'); }
+            async function share() { const text = `Concluí o Marketing Lab: ${score()} pontos, ${formatTime(state.seconds)} e ${accuracy()}% de precisão.`; try { if (navigator.share) await navigator.share({ title: 'Marketing Lab', text, url: location.href }); else if (navigator.clipboard?.writeText) { await navigator.clipboard.writeText(`${text} ${location.href}`); notify('Resultado copiado para a área de transferência.'); } else { window.prompt('Copie seu resultado:', `${text} ${location.href}`); } } catch (error) { if (error.name !== 'AbortError') notify('Não foi possível compartilhar agora.'); } }
+            slots.forEach(slot => { slot.addEventListener('click', () => placeCard(slot, state.selected)); slot.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); placeCard(slot, state.selected); } }); slot.addEventListener('dragover', event => { event.preventDefault(); slot.classList.add('drag-over'); }); slot.addEventListener('dragleave', () => slot.classList.remove('drag-over')); slot.addEventListener('drop', event => { event.preventDefault(); slot.classList.remove('drag-over'); placeCard(slot, state.selected || $(`.draggable-card[data-name="${event.dataTransfer.getData('text/plain')}"]`)); }); });
+            $('#restartGame').addEventListener('click', () => resetGame(false)); $('#reshuffleGame').addEventListener('click', () => resetGame(true)); $('#showAnswer').addEventListener('click', () => { if (!state.ended) { notify('A resposta será liberada quando você concluir o desafio corretamente.'); return; } notify('Você acertou: Descoberta → Consideração → Leads → Conversão → Compra.'); }); $('#playAgain').addEventListener('click', () => resetGame(true)); $('#shareGame').addEventListener('click', share); $('#shareResult').addEventListener('click', share);
+            const tutorialSeen = localStorage.getItem('giovanne-lab-tutorial'); if (!tutorialSeen) { const tutorial = document.createElement('div'); tutorial.className = 'tutorial'; tutorial.innerHTML = '<div class="tutorial-card" role="dialog" aria-modal="true" aria-labelledby="tutorialTitle"><span class="tag">Como jogar</span><h2 id="tutorialTitle">Monte o funil de marketing</h2><p>Arraste uma carta para a etapa correspondente. No celular, toque na carta e depois no espaço. Você pode trocar cartas livremente.</p><button class="btn btn-primary" type="button">Começar desafio</button></div>'; document.body.append(tutorial); $('button', tutorial).focus(); $('button', tutorial).addEventListener('click', () => { localStorage.setItem('giovanne-lab-tutorial', '1'); tutorial.remove(); }); }
+            const header = $('header'), progress = $('.scroll-progress'), topButton = $('.back-to-top'); const sections = $$('main section, body > section'); const onScroll = () => { const y = window.scrollY; header.classList.toggle('is-compact', y > 18); topButton.classList.toggle('is-visible', y > 500); progress.style.width = `${(y / Math.max(1, document.documentElement.scrollHeight - innerHeight)) * 100}%`; let active = sections.find(section => section.offsetTop <= y + 180 && section.offsetTop + section.offsetHeight > y + 180); $$('.nav-links a').forEach(link => link.classList.toggle('active', active && link.getAttribute('href') === `#${active.id}`)); }; addEventListener('scroll', onScroll, { passive: true }); onScroll(); topButton.addEventListener('click', () => scrollTo({ top: 0, behavior: 'smooth' }));
+            const observer = new IntersectionObserver(entries => entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('is-visible')), { threshold: .12 }); $$('.about-card, .spec-card, .process-step, .exp-card, .tool-card, .edu-card, .lab-container').forEach(element => { element.classList.add('reveal'); observer.observe(element); });
+            const counterObserver = new IntersectionObserver(entries => entries.forEach(entry => { if (!entry.isIntersecting) return; const element = entry.target, target = Number(element.dataset.counter), start = performance.now(); const animate = now => { const value = Math.min(target, Math.round(target * ((now - start) / 700))); element.textContent = value; if (value < target) requestAnimationFrame(animate); }; requestAnimationFrame(animate); counterObserver.unobserve(element); }), { threshold: .8 }); $$('[data-counter]').forEach(element => counterObserver.observe(element));
+            resetGame(true); updateRanking();
+        })();
     </script>
 </body>
 </html>
